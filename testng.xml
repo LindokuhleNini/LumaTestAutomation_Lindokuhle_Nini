@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="ToolsQA Demo Shop Test Suite">
+    <test verbose="2" preserve-order="true" name="Google Chrome Browser Test">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="url" value="https://shop.demoqa.com/shop/"/>
+        <classes>
+            <class name="com.digilink.application.Test">
+                <methods>
+                    <include name="testUnsuccessfulLogin"/>
+                </methods>
+            </class>
+            <class name="com.digilink.application.Test">
+                <methods>
+                    <include name="testSuccessfulLogin"/>
+                </methods>
+            </class>
+            <class name="com.digilink.application.Test">
+                <methods>
+                    <include name="testItemAddedToCart"/>
+                </methods>
+            </class>
+            <class name="com.digilink.application.Test">
+                <methods>
+                    <include name="testLogout"/>
+                </methods>
+            </class>
+            <class name="com.digilink.application.Test">
+                <methods>
+                    <include name="testSuccessfulCheckout"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <!--<test verbose="2" preserve-order="true" name="Microsoft Edge Browser Test">
+         <parameter name="browser" value="edge"/>
+         <parameter name="url" value="https://shop.demoqa.com/shop/"/>
+         <classes>
+             <class name="AppTests">
+                 <methods>
+                     <include name="testUnsuccessfulLogin"/>
+                 </methods>
+             </class>
+             <class name="AppTests">
+                 <methods>
+                     <include name="testSuccessfulLogin"/>
+                 </methods>
+             </class>
+             <class name="AppTests">
+                 <methods>
+                     <include name="testItemAddedToCart"/>
+                 </methods>
+             </class>
+             <class name="AppTests">
+                 <methods>
+                     <include name="testLogout"/>
+                 </methods>
+             </class>
+             <class name="AppTests">
+                 <methods>
+                     <include name="testSuccessfulCheckout"/>
+                 </methods>
+             </class>
+         </classes>
+     </test>-->
+</suite>
