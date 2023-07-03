@@ -3,31 +3,11 @@
 <suite name="ToolsQA Demo Shop Test Suite">
     <test verbose="2" preserve-order="true" name="Google Chrome Browser Test">
         <parameter name="browser" value="chrome"/>
-        <parameter name="url" value="https://shop.demoqa.com/shop/"/>
+        <parameter name="url" value="https://magento.softwaretestingboard.com/"/>
         <classes>
             <class name="com.digilink.application.Test">
                 <methods>
-                    <include name="testUnsuccessfulLogin"/>
-                </methods>
-            </class>
-            <class name="com.digilink.application.Test">
-                <methods>
-                    <include name="testSuccessfulLogin"/>
-                </methods>
-            </class>
-            <class name="com.digilink.application.Test">
-                <methods>
-                    <include name="testItemAddedToCart"/>
-                </methods>
-            </class>
-            <class name="com.digilink.application.Test">
-                <methods>
-                    <include name="testLogout"/>
-                </methods>
-            </class>
-            <class name="com.digilink.application.Test">
-                <methods>
-                    <include name="testSuccessfulCheckout"/>
+                    <include name="invalidLoginTest"/>
                 </methods>
             </class>
         </classes>

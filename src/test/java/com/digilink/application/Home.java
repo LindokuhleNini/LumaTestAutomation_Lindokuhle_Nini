@@ -14,8 +14,5 @@ public class Home extends ActionHelper {
         this.driver = driver;
     }
 
-    public Login navigateToLoginPage(){
-        clickElement(loginPageLink);
-        return new Login(driver);
-    }
+
 }

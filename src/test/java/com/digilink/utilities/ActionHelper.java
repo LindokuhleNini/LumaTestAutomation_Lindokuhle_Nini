@@ -1,16 +1,19 @@
 package com.digilink.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
+import java.io.File;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class ActionHelper {
 
@@ -46,5 +49,25 @@ public class ActionHelper {
         }
         driver.manage().window().maximize();
         return driver;
+    }
+
+    public static String takeScreenshot(WebDriver driver){
+        try{
+
+            String fileSeparator = System.getProperty("file.separator");
+            String extentReportsPath = System.getProperty("user.dir") + fileSeparator + "src" + fileSeparator + "test" + fileSeparator + "java" + fileSeparator + "reporting";
+            String screenshotPath = extentReportsPath + fileSeparator + "screenshots";
+
+            File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            String screenshotName = "screenshot_" + Math.random() + ".png";
+            String screenshot = screenshotPath + fileSeparator + screenshotName;
+
+            FileUtils.copyFile(file, new File(screenshot));
+            return "." + fileSeparator + "screenshots" + fileSeparator + screenshotName;
+
+        } catch (Exception e) {
+            Assert.fail("test failed to take a screenshot" + e);
+            throw new RuntimeException(e);
+        }
     }
 }

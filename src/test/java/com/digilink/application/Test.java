@@ -8,6 +8,8 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -32,14 +34,18 @@ public class Test {
     @Parameters("browser")
     @BeforeTest
     public void setUp(String browser) {
+        //browser = "chrome";
 
         try {
             if(browser.equalsIgnoreCase("chrome")){
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("--disable-popup-blocking");
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-            } else if(browser.equalsIgnoreCase("chrome")){
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(options);
+            } else if(browser.equalsIgnoreCase("edge")){
+                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
             } else{
                 throw new RuntimeException("Browser name '" + browser + "' could not be found.Check spelling");
             }
@@ -80,7 +86,8 @@ public class Test {
     @org.testng.annotations.Test(priority = 1, testName = "TC-001: invalid Login test")
     public void invalidLoginTest(String url){
         test = extent.createTest("TC-001: invalid login test", "");
-
+        login.navigateToLoginPage(url);
+        login.captureDetailsAndSubmit();
     }
 
 }
