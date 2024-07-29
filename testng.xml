@@ -5,9 +5,14 @@
         <parameter name="browser" value="chrome"/>
         <parameter name="url" value="https://magento.softwaretestingboard.com/"/>
         <classes>
-            <class name="com.digilink.application.Test">
+            <class name="com.digilink.application.Tests">
                 <methods>
-                    <include name="invalidLoginTest"/>
+                    <include name="validLoginTest"/>
+                </methods>
+            </class>
+            <class name="com.digilink.application.Tests">
+                <methods>
+                    <include name="addTeesToCart"/>
                 </methods>
             </class>
         </classes>

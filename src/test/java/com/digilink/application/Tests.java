@@ -23,13 +23,14 @@ import java.time.format.DateTimeFormatter;
 /**
  * Unit test for simple App.
  */
-public class Test {
+public class Tests {
 
     public static WebDriver driver;
     public static ExtentTest test;
     ExtentSparkReporter htmlReporter;
     ExtentReports extent;
     Login login;
+    Home home;
 
     @Parameters("browser")
     @BeforeTest
@@ -51,6 +52,7 @@ public class Test {
             }
             driver.manage().window().maximize();
             login = PageFactory.initElements(driver, Login.class);
+            home = PageFactory.initElements(driver, Home.class);
 
             String fileSeparator = System.getProperty("file.separator");
             String file = System.getProperty("user.dir") + fileSeparator + "src" + fileSeparator + "test" + fileSeparator + "java" + fileSeparator + "reporting" + fileSeparator + "LumaShopTestReport"
@@ -84,10 +86,17 @@ public class Test {
 
     @Parameters("url")
     @org.testng.annotations.Test(priority = 1, testName = "TC-001: invalid Login test")
-    public void invalidLoginTest(String url){
+    public void validLoginTest(String url){
         test = extent.createTest("TC-001: invalid login test", "");
         login.navigateToLoginPage(url);
         login.captureDetailsAndSubmit();
+    }
+
+    @Parameters("url")
+    @org.testng.annotations.Test(priority = 2, testName = "TC-002: invalid Login test")
+    public void addTeesToCart(String url){
+        test = extent.createTest("TC-001: invalid login test", "");
+        home.navigateToTees();
     }
 
 }
